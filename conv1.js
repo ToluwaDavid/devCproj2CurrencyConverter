@@ -7,7 +7,7 @@ PORT = 8080;
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Hello form the Homepage");
+  res.send("Hello form the Homepage, this helps in conversion");
 });
 
 
@@ -84,6 +84,6 @@ app.post("/addcurrencypair", (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, () => {   
   console.log(`Running on port ${PORT}`);
 });
