@@ -1,0 +1,12 @@
+[
+  {
+    "fromCurrency": "NGN",
+    "fromCurrencyFullName": "Nigerian Naira",
+    "fromAmount": "0",
+    "toCurrency": "EUR",
+    "toCurrencyFullName": "EUROPEAN EURO",
+    "toAmount": 0,
+    "exchangeRate": 300,
+    "currencyPair": "NGNEUR"
+  }
+]
