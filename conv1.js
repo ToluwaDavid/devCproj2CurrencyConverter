@@ -7,7 +7,7 @@ PORT = 8080;
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Hello form the Homepage, this helps in conversion");
+  res.send("Hello form the Homepage, this helps in conversion from one currency to another");
 });
 
 
@@ -31,7 +31,6 @@ app.get("/convert", (req, res) => {
     fe = found.exchangeRate;
     estiamtedAmount = money * fe;
     console.log(estiamtedAmount);
-    // return estiamtedAmount
   }
 
   res.send({estiamtedAmount})
@@ -83,6 +82,39 @@ app.post("/addcurrencypair", (req, res) => {
     }
   });
 });
+
+//PUT
+//Edit the Json file
+app.post('/updatecurrecypair/:pair' , (req, res)=>{
+  pair =  req.params.pair;
+  console.log(pair)
+  var newText = req.body
+  console.log(newText)
+ if(pair === null){
+  res.send('This field cannot be empty')
+ } else{
+  // const current = require("./currency.json");
+  fs.readFile('currency.json', (err, data) =>{
+   let obj =  JSON.parse(data)
+    let found = obj.find((cpair) => cpair.currencyPair === pair)
+    if(!found){
+      console.log('Currency Pair does not exist!')
+    } else{
+      found = newText
+      obj[pair] = found
+      console.log(obj)
+      let newobj = obj
+      console.log(newobj)
+      fs.writeFile("currency.json", JSON.stringify(newobj), (err) => {
+        if (err) {
+          console.log(err);
+        }
+      })
+   
+    }
+  })
+ }
+})
 
 app.listen(PORT, () => {   
   console.log(`Running on port ${PORT}`);
